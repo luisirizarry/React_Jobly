@@ -42,18 +42,23 @@ function App() {
   const login = async (username, password) => {
     try {
       const token = await JoblyApi.getToken({ username, password });
-      setToken(token);
-  
+
+      JoblyApi.token = token;
       const user = await JoblyApi.getUser(username);
+
+      setToken(token);
       setCurrentUser(user);
-      
-      return true; // Indicate success
+
+      return true;
     } catch (err) {
       console.error("Login failed:", err);
-      return false; // Indicate failure
+
+      setToken(null);
+      setCurrentUser(null);
+
+      return false;
     }
   };
-  
 
   const signup = async (username, password, firstName, lastName, email) => {
     try {
@@ -64,9 +69,24 @@ function App() {
         lastName,
         email,
       });
-      setToken(token);
+
+     
+      JoblyApi.token = token;
+
+     
+      const user = await JoblyApi.getUser(username);
+
+      setToken(token); 
+      setCurrentUser(user);
+
+      return true; 
     } catch (err) {
-      console.error(`Could not successfully register`, err);
+      console.error("Signup failed:", err);
+
+      setToken(null); 
+      setCurrentUser(null); 
+
+      return false; 
     }
   };
 
