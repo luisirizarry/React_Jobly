@@ -2,14 +2,10 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../pages/authentication/UserContext";
 
-const PrivateRoute = ({ requiredRole }) => {
+const PrivateRoute = () => {
   const { currentUser } = useContext(UserContext);
 
-  if (!currentUser) return <Navigate to="/login" />;
-  if (requiredRole && currentUser.role !== requiredRole)
-    return <Navigate to="/" />;
-
-  return <Outlet />;
+  return currentUser ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;

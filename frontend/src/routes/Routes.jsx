@@ -23,11 +23,6 @@ function AppRoutes({ login, signup }) {
         <Route path="/profile" element={<Profile />} />
       </Route>
 
-      {/* Incase we need admin routes */}
-      {/* <Route element={<PrivateRoute requiredRole="admin" />}>
-        <Route path="/admin" element={<AdminDashboard />} />
-      </Route> */}
-
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
