@@ -8,7 +8,7 @@ import SignupForm from "../pages/authentication/SignupForm";
 import Profile from "../pages/profiles/ProfileForm";
 import PrivateRoute from "./PrivateRoute";
 
-function AppRoutes({ login, signup }) {
+function AppRoutes({ login, signup, updateProfile }) {
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
@@ -20,7 +20,7 @@ function AppRoutes({ login, signup }) {
         <Route path="/companies" element={<Companies />} />
         <Route path="/companies/:handle" element={<CompanyDetails />} />
         <Route path="/jobs" element={<Jobs />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<Profile updateProfile={updateProfile} />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/" />} />

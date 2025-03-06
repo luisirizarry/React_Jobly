@@ -95,6 +95,18 @@ function App() {
     setCurrentUser(null);
   };
 
+  const updateProfile = async (username, updatedData) => {
+    try {
+      const user = await JoblyApi.updateProfile(username, updatedData);
+      setCurrentUser(user);
+      return true; 
+    } catch (err) {
+      console.error("Profile update failed:", err);
+      return false;
+    }
+  };
+  
+  
   // Show loading spinner while fetching user info
   if (!infoLoaded) return <LoadingSpinner />;
 
@@ -102,7 +114,7 @@ function App() {
     <UserContext.Provider value={{ currentUser, setCurrentUser, logout }}>
       <BrowserRouter>
         <Navbar logout={logout} />
-        <AppRoutes currentUser={currentUser} login={login} signup={signup} />
+        <AppRoutes currentUser={currentUser} login={login} signup={signup} updateProfile={updateProfile}/>
       </BrowserRouter>
     </UserContext.Provider>
   );

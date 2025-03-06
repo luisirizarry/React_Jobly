@@ -1,0 +1,67 @@
+/* Center the form */
+.profile-form {
+  background: #a1a1a19f;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+/* Style for labels */
+.profile-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+/* Input fields */
+.profile-form input {
+  width: 100%;
+  padding: 10px 0px 10px 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border 0.3s ease-in-out;
+}
+
+/* Focus effect */
+.profile-form input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Submit button */
+.update-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 10px 10px 10px;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.update-button:hover {
+  background-color: #0056b3;
+}
+
+/* Error and Success Messages */
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.success {
+  color: rgb(0, 219, 0);
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
