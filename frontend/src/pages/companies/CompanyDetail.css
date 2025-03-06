@@ -1,0 +1,46 @@
+.company-detail {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.company-detail h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.company-detail p {
+  color: #555;
+}
+
+.company-detail h3 {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #007bff;
+}
+
+.company-detail-top {
+  color: #f5f5f5; 
+  background-color: rgba(
+    36,
+    36,
+    36,
+    0.9
+  ); 
+  padding: 20px; 
+  border-radius: 8px; 
+  text-align: center; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  max-width: 800px; 
+  margin: 20px auto; 
+}
+
+.company-detail-top h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.company-detail-top p {
+  font-size: 18px;
+  line-height: 1.5; 
+}

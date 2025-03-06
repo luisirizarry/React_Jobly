@@ -1,0 +1,54 @@
+/* Centering the form */
+.login-form {
+  background: #ffffff9f;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+/* Style for labels */
+.login-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+/* Input fields */
+.login-form input {
+  width: 100%;
+  padding: 10px 0px 10px 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border 0.3s ease-in-out;
+}
+
+/* Focus effect */
+.login-form input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Submit button */
+.login-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 10px 10px 10px;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}

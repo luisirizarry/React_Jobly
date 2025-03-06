@@ -1,0 +1,14 @@
+/* Container for the job list */
+.job-list {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 70px;
+  text-align: center;
+}
+
+/* Message when no jobs are found */
+.job-list p {
+  font-size: 18px;
+  color: #777;
+  margin-top: 20px;
+}

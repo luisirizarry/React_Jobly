@@ -1,0 +1,8 @@
+.homepage-container {
+    display: flex;
+    justify-content: center;  /* Centers horizontally */
+    align-items: center;       /* Centers vertically */
+    height: calc(100vh - 60px); /* Full height minus navbar height */
+    text-align: center;
+  }
+  
