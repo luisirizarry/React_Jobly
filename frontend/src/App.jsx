@@ -12,6 +12,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useLocalStorageState("token", null);
   const [infoLoaded, setInfoLoaded] = useState(false);
+  const [appliedJobs, setAppliedJobs] = useState(new Set());
 
   // Fetch user info when token changes
   useEffect(() => {
@@ -20,7 +21,8 @@ function App() {
 
       if (!token) {
         setCurrentUser(null);
-        setInfoLoaded(true); // Stop loading if no token
+        setAppliedJobs(new Set()); // Reset applied jobs
+        setInfoLoaded(true);
         return;
       }
 
@@ -29,11 +31,12 @@ function App() {
         const { username } = jwtDecode(token);
         const user = await JoblyApi.getUser(username);
         setCurrentUser(user);
+        setAppliedJobs(new Set(user.applications)); // ✅ Use `user.applications`
       } catch (err) {
         console.error("Error loading user:", err);
         setCurrentUser(null);
       }
-      setInfoLoaded(true); // Stop loading
+      setInfoLoaded(true);
     }
 
     getUser();
@@ -43,19 +46,18 @@ function App() {
     try {
       const token = await JoblyApi.getToken({ username, password });
 
-      JoblyApi.token = token;
+      JoblyApi.token = token; 
       const user = await JoblyApi.getUser(username);
 
       setToken(token);
       setCurrentUser(user);
+      setAppliedJobs(new Set(user.applications)); 
 
       return true;
     } catch (err) {
       console.error("Login failed:", err);
-
       setToken(null);
       setCurrentUser(null);
-
       return false;
     }
   };
@@ -70,51 +72,76 @@ function App() {
         email,
       });
 
-     
       JoblyApi.token = token;
-
-     
       const user = await JoblyApi.getUser(username);
 
-      setToken(token); 
+      setToken(token);
       setCurrentUser(user);
+      setAppliedJobs(new Set(user.applications));
 
-      return true; 
+      return true;
     } catch (err) {
       console.error("Signup failed:", err);
-
-      setToken(null); 
-      setCurrentUser(null); 
-
-      return false; 
+      setToken(null);
+      setCurrentUser(null);
+      return false;
     }
   };
 
   const logout = () => {
     setToken(null);
     setCurrentUser(null);
+    setAppliedJobs(new Set());
   };
 
   const updateProfile = async (username, updatedData) => {
     try {
       const user = await JoblyApi.updateProfile(username, updatedData);
       setCurrentUser(user);
-      return true; 
+      return true;
     } catch (err) {
       console.error("Profile update failed:", err);
       return false;
     }
   };
-  
-  
-  // Show loading spinner while fetching user info
+
+  // ✅ Fixed: `appliedJobs` correctly checks if a job was applied to
+  function hasAppliedToJob(id) {
+    return appliedJobs.has(id);
+  }
+
+  // ✅ Fixed: Prevent duplicate applications
+  async function applyToJob(id) {
+    if (hasAppliedToJob(id)) return;
+
+    try {
+      await JoblyApi.applyToJob(currentUser.username, id);
+      setAppliedJobs(new Set([...appliedJobs, id])); // ✅ Use `appliedJobs`
+    } catch (err) {
+      console.error("Error applying to job:", err);
+    }
+  }
+
   if (!infoLoaded) return <LoadingSpinner />;
 
   return (
-    <UserContext.Provider value={{ currentUser, setCurrentUser, logout }}>
+    <UserContext.Provider
+      value={{
+        currentUser,
+        setCurrentUser,
+        logout,
+        hasAppliedToJob,
+        applyToJob,
+      }}
+    >
       <BrowserRouter>
         <Navbar logout={logout} />
-        <AppRoutes currentUser={currentUser} login={login} signup={signup} updateProfile={updateProfile}/>
+        <AppRoutes
+          currentUser={currentUser}
+          login={login}
+          signup={signup}
+          updateProfile={updateProfile}
+        />
       </BrowserRouter>
     </UserContext.Provider>
   );

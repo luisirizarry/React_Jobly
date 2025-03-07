@@ -30,3 +30,25 @@
 .job-card strong {
   color: #007bff;
 }
+
+.apply-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.apply-button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.apply-button:hover:not(:disabled) {
+  background-color: #0056b3;
+}

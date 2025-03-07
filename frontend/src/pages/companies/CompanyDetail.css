@@ -1,5 +1,5 @@
 .company-detail {
-  padding: 20px;
+  padding: 70px 20px 20px 20px;
   max-width: 600px;
   margin: 0 auto;
 }
@@ -10,7 +10,7 @@
 }
 
 .company-detail p {
-  color: #555;
+  color: #8b8b8b;
 }
 
 .company-detail h3 {
